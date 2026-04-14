@@ -30,7 +30,7 @@ export const NavMenu = ({
       <Link
         href="/"
         className={cn(
-          "flex items-center gap-1.5 text-sm hover:text-primary cursor-pointer transition-colors duration-300",
+          "flex items-center gap-1.5 text-sm hover:text-primary cursor-pointer",
           orientation === "vertical" ? "w-full" : "",
         )}
       >
@@ -41,7 +41,7 @@ export const NavMenu = ({
         <Link
           href="/cart"
           className={cn(
-            "flex items-center gap-1.5 relative text-sm hover:text-primary cursor-pointer transition-colors duration-300",
+            "flex items-center gap-1.5 relative text-sm hover:text-primary cursor-pointer",
             orientation === "vertical" ? "w-full" : "",
           )}
         >

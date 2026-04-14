@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/shared/components/ui/tooltip";
 import { QueryProvider } from "@/shared/components/providers/QueryProvider";
 import { Navbar } from "@/shared/components/layout/navbar/Navbar";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/shared/components/providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -42,13 +43,15 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen">
-          <QueryProvider>
-            <TooltipProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            <QueryProvider>
               <Navbar />
               {children}
               <Toaster position="bottom-right" />
-            </TooltipProvider>
-          </QueryProvider>
+            </QueryProvider>
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
