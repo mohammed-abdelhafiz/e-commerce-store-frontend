@@ -1,24 +1,17 @@
 "use client";
 import { Button } from "@/shared/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/shared/components/ui/card";
+import { Card, CardContent } from "@/shared/components/ui/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
-  FieldLabel,
 } from "@/shared/components/ui/field";
-import { Input } from "@/shared/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, SignupData } from "../schema/signupSchema";
-import ErrorTooltip from "@/shared/components/ErrorTooltip";
 import Link from "next/link";
+import { motion } from "motion/react";
+import { FormField } from "@/shared/components/FormField";
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const {
@@ -35,98 +28,78 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
   });
   return (
-    <Card {...props}>
-      <CardHeader>
-        <CardTitle>Create an account</CardTitle>
-        <CardDescription>
-          Enter your information below to create your account
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form noValidate onSubmit={handleSubmit((data) => console.log(data))}>
-          <FieldGroup className="space-y-0">
-            <Field>
-              <div className="flex items-center gap-1">
-                <FieldLabel htmlFor="name" className="relative">
-                  Full Name
-                </FieldLabel>
-                {errors.name && (
-                  <ErrorTooltip
-                    message={errors.name.message || "Invalid name"}
-                  />
-                )}
-              </div>
-              <Input
-                id="name"
-                type="text"
-                placeholder="John Doe"
-                {...register("name")}
-              />
-            </Field>
-            <Field>
-              <div className="flex items-center gap-1">
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                {errors.email && (
-                  <ErrorTooltip
-                    message={errors.email.message || "Invalid email"}
-                  />
-                )}
-              </div>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                {...register("email")}
-              />
-            </Field>
-            <Field>
-              <div className="flex items-center gap-1">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                {errors.password && (
-                  <ErrorTooltip
-                    message={errors.password.message || "Invalid password"}
-                  />
-                )}
-              </div>
-              <Input id="password" type="password" {...register("password")} />
-            </Field>
-            <Field>
-              <div className="flex items-center gap-1">
-                <FieldLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </FieldLabel>
-                {errors.confirmPassword && (
-                  <ErrorTooltip
-                    message={
-                      errors.confirmPassword.message ||
-                      "Invalid confirm password"
-                    }
-                  />
-                )}
-              </div>
-              <Input
-                id="confirmPassword"
-                type="password"
-                {...register("confirmPassword")}
-              />
-            </Field>
-            <FieldGroup>
-              <Field>
-                <Button type="submit">Create Account</Button>
-                <FieldDescription className="px-6 text-center">
-                  Already have an account?
-                  <Link
-                    href="/login"
-                    className="no-underline! hover:underline! cursor-pointer ml-1 text-primary"
-                  >
-                    Sign in
-                  </Link>
-                </FieldDescription>
-              </Field>
-            </FieldGroup>
-          </FieldGroup>
-        </form>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-5">
+      <motion.h2
+        className="text-2xl font-bold text-center text-primary"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        Create an account
+      </motion.h2>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <Card {...props}>
+          <CardContent>
+            <form
+              noValidate
+              onSubmit={handleSubmit((data) => console.log(data))}
+            >
+              <FieldGroup className="space-y-0">
+                <FormField
+                  id="name"
+                  label="Full Name"
+                  type="text"
+                  placeholder="John Doe"
+                  registration={register("name")}
+                  error={errors.name}
+                />
+                <FormField
+                  id="email"
+                  label="Email"
+                  type="email"
+                  placeholder="m@example.com"
+                  registration={register("email")}
+                  error={errors.email}
+                />
+                <FormField
+                  id="password"
+                  label="Password"
+                  type="password"
+                  placeholder="********"
+                  registration={register("password")}
+                  error={errors.password}
+                />
+                <FormField
+                  id="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  placeholder="********"
+                  registration={register("confirmPassword")}
+                  error={errors.confirmPassword}
+                />
+                <FieldGroup>
+                  <Field>
+                    <Button type="submit">Create Account</Button>
+                    <FieldDescription className="px-6 text-center">
+                      Already have an account?
+                      <Link
+                        href="/login"
+                        className="no-underline! hover:underline! cursor-pointer ml-1 text-primary"
+                      >
+                        Sign in
+                      </Link>
+                    </FieldDescription>
+                  </Field>
+                </FieldGroup>
+              </FieldGroup>
+            </form>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
   );
 }

@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 import { TooltipProvider } from "@/shared/components/ui/tooltip";
+import { QueryProvider } from "@/shared/components/providers/QueryProvider";
+import { Navbar } from "@/shared/components/layout/navbar/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -29,16 +32,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "antialiased",
         geistSans.variable,
         geistMono.variable,
-        "font-sans dark",
+        "font-sans",
         inter.variable,
       )}
     >
       <body className="min-h-screen">
-        <TooltipProvider>{children}</TooltipProvider>
+          <QueryProvider>
+            <TooltipProvider>
+              <Navbar />
+              {children}
+              <Toaster position="bottom-right" />
+            </TooltipProvider>
+          </QueryProvider>
       </body>
     </html>
   );
