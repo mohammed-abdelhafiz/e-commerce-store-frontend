@@ -1,26 +1,35 @@
 "use client";
 import { Button } from "@/shared/components/ui/button";
 import { Card, CardContent } from "@/shared/components/ui/card";
-import { Field, FieldDescription, FieldGroup } from "@/shared/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+} from "@/shared/components/ui/field";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginData } from "@/features/auth/schema/loginSchema";
+import { loginSchema, LoginDto } from "@/features/auth/schema/loginSchema";
 import { FormField } from "@/shared/components/FormField";
 import Link from "next/link";
 import { motion } from "motion/react";
+import useLogin from "../hooks/useLogin";
 
 export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginData>({
+  } = useForm<LoginDto>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+
+
+  const { mutateAsync: login, isPending } = useLogin();
+
   return (
     <div className="flex flex-col gap-5">
       <motion.h2
@@ -38,10 +47,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
       >
         <Card {...props}>
           <CardContent>
-            <form
-              noValidate
-              onSubmit={handleSubmit((data) => console.log(data))}
-            >
+            <form noValidate onSubmit={handleSubmit((data) => login(data))}>
               <FieldGroup className="space-y-0">
                 <FormField
                   id="email"
@@ -62,7 +68,9 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
 
                 <FieldGroup>
                   <Field>
-                    <Button type="submit">Login</Button>
+                    <Button type="submit" disabled={isPending}>
+                      {isPending ? "Logging in..." : "Login"}
+                    </Button>
                     <FieldDescription className="px-6 text-center">
                       Don&apos;t have an account?
                       <Link

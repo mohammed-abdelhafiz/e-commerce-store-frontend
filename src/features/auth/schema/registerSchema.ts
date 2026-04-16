@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const signupSchema = z
+export const registerSchema = z
   .object({
     name: z
       .string()
@@ -26,4 +26,4 @@ export const signupSchema = z
     path: ["confirmPassword"],
   });
 
-export type SignupData = z.infer<typeof signupSchema>;
+export type RegisterDto = z.infer<typeof registerSchema>;

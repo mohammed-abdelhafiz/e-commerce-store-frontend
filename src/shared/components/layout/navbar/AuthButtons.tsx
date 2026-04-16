@@ -1,8 +1,12 @@
+"use client";
+
 import { Button } from "@/shared/components/ui/button";
 import { LogIn, LogOut, UserPlus } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/shared/lib/utils";
+import { useAuthStore } from "@/shared/store/authStore";
+import useLogout from "@/features/auth/hooks/useLogout";
 export const AuthButtons = ({
   orientation = "horizontal",
   className,
@@ -10,7 +14,8 @@ export const AuthButtons = ({
 }: ComponentProps<"div"> & {
   orientation?: "horizontal" | "vertical";
 }) => {
-  const user = false;
+  const user = useAuthStore((state) => state.user);
+  const { mutate: logout, isPending } = useLogout();
   return (
     <div
       className={cn(
@@ -24,6 +29,8 @@ export const AuthButtons = ({
         <Button
           variant="secondary"
           className={cn(orientation === "vertical" ? "w-full" : "")}
+          onClick={() => logout()}
+          disabled={isPending}
         >
           logout <LogOut className="h-4 w-4" />
         </Button>

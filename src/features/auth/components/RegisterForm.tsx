@@ -8,18 +8,19 @@ import {
 } from "@/shared/components/ui/field";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema, SignupData } from "../schema/signupSchema";
+import { registerSchema, RegisterDto } from "../schema/registerSchema";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { FormField } from "@/shared/components/FormField";
+import useRegister from "../hooks/usRegister";
 
-export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
-  const {
+export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
+  const { 
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupData>({
-    resolver: zodResolver(signupSchema),
+  } = useForm<RegisterDto>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -27,6 +28,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       confirmPassword: "",
     },
   });
+  const { mutateAsync: signup, isPending } = useRegister();
+
   return (
     <div className="flex flex-col gap-5">
       <motion.h2
@@ -44,10 +47,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       >
         <Card {...props}>
           <CardContent>
-            <form
-              noValidate
-              onSubmit={handleSubmit((data) => console.log(data))}
-            >
+            <form noValidate onSubmit={handleSubmit((data) => signup(data))}>
               <FieldGroup className="space-y-0">
                 <FormField
                   id="name"
@@ -83,7 +83,13 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 />
                 <FieldGroup>
                   <Field>
-                    <Button type="submit">Create Account</Button>
+                    <Button
+                      type="submit"
+                      disabled={isPending}
+                      className="w-full"
+                    >
+                      {isPending ? "Creating Account..." : "Create Account"}
+                    </Button>
                     <FieldDescription className="px-6 text-center">
                       Already have an account?
                       <Link

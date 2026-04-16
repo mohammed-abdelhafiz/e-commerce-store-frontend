@@ -6,6 +6,8 @@ import { Home, ShoppingCart, Lock } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { buttonVariants } from "@/shared/components/ui/button";
 import { Badge } from "@/shared/components/ui/badge";
+import { useAuthStore } from "@/shared/store/authStore";
+import { usePathname } from "next/navigation";
 
 type NavMenuProps = ComponentProps<"nav"> & {
   orientation?: "horizontal" | "vertical";
@@ -16,8 +18,9 @@ export const NavMenu = ({
   className,
   ...props
 }: NavMenuProps) => {
-  const user = false;
-  const isAdmin = false;
+  const pathname = usePathname();
+  const user = useAuthStore((state) => state.user);
+  const isAdmin = user?.role === "admin";
   return (
     <nav
       className={cn(
@@ -32,6 +35,7 @@ export const NavMenu = ({
         className={cn(
           "flex items-center gap-1.5 text-sm hover:text-primary cursor-pointer",
           orientation === "vertical" ? "w-full" : "",
+          pathname === "/" ? "text-primary" : "",
         )}
       >
         <Home className="h-4 w-4" />
@@ -43,18 +47,19 @@ export const NavMenu = ({
           className={cn(
             "flex items-center gap-1.5 relative text-sm hover:text-primary cursor-pointer",
             orientation === "vertical" ? "w-full" : "",
+            pathname === "/cart" ? "text-primary" : "",
           )}
         >
           <ShoppingCart className="h-4 w-4" />
           <span>Cart</span>
-          <Badge className="absolute -top-3 -left-3 p-0 h-4 w-4 flex items-center justify-center rounded-full">
+          <Badge className="hidden md:flex absolute -top-3 -left-3 p-0 h-4 w-4 items-center justify-center rounded-full">
             3
           </Badge>
         </Link>
       )}
       {isAdmin && (
         <Link
-          href="/dashboard"
+          href="/admin"
           className={buttonVariants({
             variant: "default",
             className: cn(

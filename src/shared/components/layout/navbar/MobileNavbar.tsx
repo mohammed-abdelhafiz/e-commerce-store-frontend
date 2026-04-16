@@ -13,11 +13,11 @@ export const MobileNavbar = () => {
       <ThemeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger className="rounded-full bg-background border border-border p-2 outline-none flex items-center justify-center cursor-pointer">
-          <TextAlignJustify size={20} />
+          <TextAlignJustify size={13} />
           <span className="sr-only">Menu</span>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="w-56 mt-2 space-y-4">
+        <DropdownMenuContent align="end" className="w-56 mt-2 space-y-4 md:hidden">
           <NavMenu orientation="vertical" />
           <AuthButtons orientation="vertical" />
         </DropdownMenuContent>

@@ -1,11 +1,16 @@
-import { SignupForm } from "@/features/auth/components/SignupForm";
+import { RegisterForm } from "@/features/auth/components/RegisterForm";
 
 export default function RegisterPage() {
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-md">
-        <SignupForm />
+        <RegisterForm />
       </div>
     </div>
   );
 }
+
+export const metadata = {
+  title: "Register",
+  description: "Register",
+};
