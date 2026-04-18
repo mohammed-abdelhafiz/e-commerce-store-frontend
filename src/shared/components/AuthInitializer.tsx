@@ -22,7 +22,7 @@ export default function AuthInitializer({
 
   useEffect(() => {
     if (data) {
-      setUser(data);
+      setUser(data.user);
       setIsLoading(false);
     } else if (isError) {
       setUser(null);

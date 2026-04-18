@@ -14,8 +14,8 @@ import { motion } from "motion/react";
 import { FormField } from "@/shared/components/FormField";
 import useRegister from "../hooks/usRegister";
 
-export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
-  const { 
+export function RegisterForm() {
+  const {
     register,
     handleSubmit,
     formState: { errors },
@@ -45,7 +45,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <Card {...props}>
+        <Card>
           <CardContent>
             <form noValidate onSubmit={handleSubmit((data) => signup(data))}>
               <FieldGroup className="space-y-0">

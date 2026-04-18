@@ -49,7 +49,7 @@ export default function RootLayout({
             <QueryProvider>
               <AuthInitializer>
                 <Navbar />
-                <main className="pt-16 flex-1">{children}</main>
+                <main className="pt-16 flex-1 container mx-auto">{children}</main>
                 <Toaster
                   position="bottom-right"
                   toastOptions={{

@@ -1,5 +1,6 @@
 import { Field, FieldLabel } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
+import { Textarea } from "@/shared/components/ui/textarea";
 import ErrorTooltip from "@/shared/components/ErrorTooltip";
 import { UseFormRegisterReturn, FieldError } from "react-hook-form";
 
@@ -10,6 +11,8 @@ interface FormFieldProps {
   placeholder?: string;
   registration: UseFormRegisterReturn;
   error?: FieldError;
+  as?: "input" | "textarea";
+  resize?: boolean;
 }
 
 export const FormField = ({
@@ -19,6 +22,8 @@ export const FormField = ({
   placeholder,
   registration,
   error,
+  as = "input",
+  resize = true,
 }: FormFieldProps) => {
   return (
     <Field>
@@ -30,7 +35,21 @@ export const FormField = ({
           />
         )}
       </div>
-      <Input id={id} type={type} placeholder={placeholder} {...registration} />
+      {as === "textarea" ? (
+        <Textarea
+          id={id}
+          placeholder={placeholder}
+          {...registration}
+          className={!resize ? "resize-none" : ""}
+        />
+      ) : (
+        <Input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          {...registration}
+        />
+      )}
     </Field>
   );
 };

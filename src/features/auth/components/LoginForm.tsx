@@ -14,7 +14,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import useLogin from "../hooks/useLogin";
 
-export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
+export function LoginForm() {
   const {
     register,
     handleSubmit,
@@ -45,7 +45,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <Card {...props}>
+        <Card>
           <CardContent>
             <form noValidate onSubmit={handleSubmit((data) => login(data))}>
               <FieldGroup className="space-y-0">

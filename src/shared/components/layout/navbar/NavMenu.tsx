@@ -24,7 +24,7 @@ export const NavMenu = ({
   return (
     <nav
       className={cn(
-        "flex items-center gap-4",
+        "flex items-center gap-6",
         orientation === "vertical" ? "flex-col" : "flex-row",
         className,
       )}

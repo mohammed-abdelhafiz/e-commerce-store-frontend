@@ -1,7 +1,7 @@
+import { AdminPageContent } from "@/features/admin/components/AdminPageContent";
+
 export default function AdminPage() {
-  return (
-    <div>AdminPage</div>
-  )
+  return <AdminPageContent />;
 }
 
 export const metadata = {
