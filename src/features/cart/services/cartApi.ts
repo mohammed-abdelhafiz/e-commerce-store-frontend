@@ -17,6 +17,12 @@ export const updateCartItemQuantity = async ({
   productId: string;
   quantity: number;
 }) => {
+  if (!productId?.trim()) {
+    throw new Error("Product ID is required");
+  }
+  if (!Number.isInteger(quantity) || quantity < 1) {
+    throw new Error("Quantity must be a positive integer");
+  }
   const response = await api.put(`/cart/${productId}`, { quantity });
   return response.data;
 };

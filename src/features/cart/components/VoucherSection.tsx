@@ -81,6 +81,7 @@ export const VoucherSection = ({
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
             disabled={!!appliedCoupon}
+            aria-label="Coupon code"
           />
 
           <Button

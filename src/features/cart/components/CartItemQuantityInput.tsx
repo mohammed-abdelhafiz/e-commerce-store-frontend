@@ -19,7 +19,12 @@ export function CartItemQuantityInput({
     <div className="w-full max-w-24">
       <NumberField
         value={value}
-        onValueChange={(v) => onValueChange(Number(v))}
+        onValueChange={(v) => {
+          const num = Number(v);
+          if (!Number.isNaN(num) && num >= 1) {
+            onValueChange(num);
+          }
+        }}
         min={1}
       >
         <NumberFieldGroup>

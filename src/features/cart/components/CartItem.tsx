@@ -65,6 +65,7 @@ export const CartItem = ({ cartItem }: CartItemProps) => {
               variant="destructive"
               size="sm"
               className="w-fit"
+              aria-label="Remove item from cart"
             >
               {isRemoving ? (
                 <Loader2 size={16} className="animate-spin" />

@@ -6,6 +6,6 @@ export const getMyCoupon = async () => {
 };
 
 export const validateCoupon = async (code: string) => {
-  const response = await api.post(`/coupons/validate/${code}`);
+  const response = await api.post(`/coupons/validate/${encodeURIComponent(code)}`);
   return response.data;
 };

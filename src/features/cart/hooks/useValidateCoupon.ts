@@ -6,7 +6,7 @@ export const useValidateCoupon = () => {
   return useMutation({
     mutationFn: validateCoupon,
     onSuccess: ({coupon}) => {
-      if (coupon) {
+      if (coupon && coupon.discountPercentage) {
         toast.success(`Coupon applied! ${coupon.discountPercentage}% off`);
       } else {
         toast.error("Invalid or expired coupon");

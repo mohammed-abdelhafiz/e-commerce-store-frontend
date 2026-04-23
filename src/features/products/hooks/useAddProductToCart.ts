@@ -10,5 +10,8 @@ export const useAddProductToCart = () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       toast.success("Product added to cart");
     },
+    onError: () => {
+      toast.error("Failed to add product to cart");
+    },
   });
 };

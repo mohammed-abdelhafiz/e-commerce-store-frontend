@@ -1,7 +1,7 @@
 import api from "@/shared/lib/axios";
 
 export const getProductsByCategory = async (category: string) => {
-  const response = await api.get(`/products/category/${category}`);
+  const response = await api.get(`/products/category/${encodeURIComponent(category)}`);
   return response.data.products;
 };
 

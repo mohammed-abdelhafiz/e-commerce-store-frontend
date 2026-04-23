@@ -25,12 +25,12 @@ export const ProductsGrid = ({ categoryName }: ProductsGridProps) => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      {products.length === 0 ? (
+      {products?.length === 0 ? (
         <div className="col-span-full">
           <EmptyCategoryProducts />
         </div>
       ) : (
-        products.map((product: Product) => (
+        products?.map((product: Product) => (
           <ProductCard key={product._id} product={product} />
         ))
       )}
