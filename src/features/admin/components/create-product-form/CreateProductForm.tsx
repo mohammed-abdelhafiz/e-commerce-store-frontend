@@ -19,10 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import { CATEGORIES } from "@/app/page";
 import { ImageFormField } from "@/shared/components/ImageFormField";
 import { useState } from "react";
 import { Category } from "@/features/products/types";
+import { CATEGORIES } from "@/shared/lib/constants";
 
 export function CreateProductForm() {
   const {

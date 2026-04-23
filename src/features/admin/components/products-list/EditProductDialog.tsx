@@ -25,11 +25,11 @@ import {
 
 import { useUpdateProduct } from "../../hooks/useUpdateProduct";
 import { Category, Product } from "@/features/products/types";
-import { CATEGORIES } from "@/app/page";
 import {
   UpdateProductDto,
   UpdateProductSchema,
 } from "../../schema/adminSchema";
+import { CATEGORIES } from "@/shared/lib/constants";
 
 interface EditProductDialogProps {
   product: Product;

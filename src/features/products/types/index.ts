@@ -19,7 +19,7 @@ export type Product = {
   category: Category["name"];
   image: {
     url: string;
-    publicId: string;
+    public_id: string;
   };
   isFeatured: boolean;
   createdAt: string;

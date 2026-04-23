@@ -8,6 +8,7 @@ import { buttonVariants } from "@/shared/components/ui/button";
 import { Badge } from "@/shared/components/ui/badge";
 import { useAuthStore } from "@/shared/store/authStore";
 import { usePathname } from "next/navigation";
+import { useGetCartCount } from "@/features/cart/hooks/useGetCartCount";
 
 type NavMenuProps = ComponentProps<"nav"> & {
   orientation?: "horizontal" | "vertical";
@@ -21,6 +22,7 @@ export const NavMenu = ({
   const pathname = usePathname();
   const user = useAuthStore((state) => state.user);
   const isAdmin = user?.role === "admin";
+  const cartCount = useGetCartCount();
   return (
     <nav
       className={cn(
@@ -52,8 +54,8 @@ export const NavMenu = ({
         >
           <ShoppingCart className="h-4 w-4" />
           <span>Cart</span>
-          <Badge className="hidden md:flex absolute -top-3 -left-3 p-0 h-4 w-4 items-center justify-center rounded-full">
-            3
+          <Badge className="hidden md:flex absolute -top-3 -left-3 h-4 w-4 items-center justify-center rounded-full">
+            {cartCount}
           </Badge>
         </Link>
       )}
