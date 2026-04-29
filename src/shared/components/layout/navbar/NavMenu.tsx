@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { Home, ShoppingCart, Lock } from "lucide-react";
+import { Home, ShoppingCart, Lock, History } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { buttonVariants } from "@/shared/components/ui/button";
 import { Badge } from "@/shared/components/ui/badge";
@@ -44,20 +44,33 @@ export const NavMenu = ({
         <span>Home</span>
       </Link>
       {user && (
-        <Link
-          href="/cart"
-          className={cn(
-            "flex items-center gap-1.5 relative text-sm hover:text-primary cursor-pointer",
-            orientation === "vertical" ? "w-full" : "",
-            pathname === "/cart" ? "text-primary" : "",
-          )}
-        >
-          <ShoppingCart className="h-4 w-4" />
-          <span>Cart</span>
-          <Badge className="hidden md:flex absolute -top-3 -left-3 h-4 w-4 items-center justify-center rounded-full">
-            {cartCount}
-          </Badge>
-        </Link>
+        <>
+          <Link
+            href="/cart"
+            className={cn(
+              "flex items-center gap-1.5 relative text-sm hover:text-primary cursor-pointer",
+              orientation === "vertical" ? "w-full" : "",
+              pathname === "/cart" ? "text-primary" : "",
+            )}
+          >
+            <ShoppingCart className="h-4 w-4" />
+            <span>Cart</span>
+            <Badge className="hidden md:flex absolute -top-3 -left-3 h-4 w-4 items-center justify-center rounded-full">
+              {cartCount}
+            </Badge>
+          </Link>
+          <Link
+            href="/orders"
+            className={cn(
+              "flex items-center gap-1.5 text-sm hover:text-primary cursor-pointer",
+              orientation === "vertical" ? "w-full" : "",
+              pathname === "/orders" ? "text-primary" : "",
+            )}
+          >
+            <History className="h-4 w-4" />
+            <span>Orders</span>
+          </Link>
+        </>
       )}
       {isAdmin && (
         <Link

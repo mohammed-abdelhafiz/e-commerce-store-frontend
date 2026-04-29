@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/shared/components/ui/card";
 import { Loader2, ShoppingCart } from "lucide-react";
 import { Product } from "../types";
 import { useAddProductToCart } from "../hooks/useAddProductToCart";
+import { useAuthStore } from "@/shared/store/authStore";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
@@ -12,7 +14,14 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { mutate: addProductToCart, isPending } = useAddProductToCart();
+  const user = useAuthStore((state) => state.user);
+  const router = useRouter();
   const addToCart = () => {
+    //if not logged in redirect to /login
+    if (!user) {
+      router.push("/login");
+      return;
+    }
     addProductToCart(product._id);
   };
   return (

@@ -52,3 +52,14 @@ export const updateProduct = async ({
   });
   return response.data;
 };
+
+export const getOrders = async ({
+  page,
+  limit,
+}: {
+  page: number;
+  limit: number;
+}) => {
+  const response = await api.get(`/orders?page=${page}&limit=${limit}`);
+  return response.data;
+};

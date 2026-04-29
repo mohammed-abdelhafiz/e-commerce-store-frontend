@@ -29,5 +29,6 @@ export const updateCartItemQuantity = async ({
 
 export const clearCart = async () => {
   const response = await api.delete("/cart");
+  console.log("response.data",response.data);
   return response.data;
 };

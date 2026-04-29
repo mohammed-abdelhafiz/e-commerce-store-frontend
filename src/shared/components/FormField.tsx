@@ -13,6 +13,7 @@ interface FormFieldProps {
   error?: FieldError;
   as?: "input" | "textarea";
   resize?: boolean;
+  min?: number;
 }
 
 export const FormField = ({
@@ -24,6 +25,7 @@ export const FormField = ({
   error,
   as = "input",
   resize = true,
+  min,
 }: FormFieldProps) => {
   return (
     <Field>
@@ -48,6 +50,7 @@ export const FormField = ({
           type={type}
           placeholder={placeholder}
           {...registration}
+          min={min}
         />
       )}
     </Field>

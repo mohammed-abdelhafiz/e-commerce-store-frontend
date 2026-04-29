@@ -1,11 +1,12 @@
 "use client";
 import { motion } from "motion/react";
-import { PlusCircle, ShoppingBasket, BarChart } from "lucide-react";
+import { PlusCircle, ShoppingBasket, BarChart, ShoppingBag } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
 import { CreateProductForm } from "./create-product-form/CreateProductForm";
 import { ProductsList } from "./products-list/ProductsList";
 import { Analytics } from "./analytics/Analytics";
+import { OrdersList } from "./orders-list/OrdersList";
 
 const TABS = [
   {
@@ -19,6 +20,12 @@ const TABS = [
     label: "Products",
     icon: ShoppingBasket,
     view: <ProductsList />,
+  },
+  {
+    id: "orders",
+    label: "Orders",
+    icon: ShoppingBag,
+    view: <OrdersList />,
   },
   { id: "analytics", label: "Analytics", icon: BarChart, view: <Analytics /> },
 ];

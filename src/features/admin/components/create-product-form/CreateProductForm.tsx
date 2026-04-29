@@ -38,7 +38,7 @@ export function CreateProductForm() {
     defaultValues: {
       name: "",
       description: "",
-      price: "0",
+      price: "1",
       category: "Jeans",
       image: undefined,
     },
@@ -73,7 +73,7 @@ export function CreateProductForm() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col gap-6 max-w-xl mx-auto py-8 px-4 w-full"
+      className="flex flex-col gap-6 max-w-2xl mx-auto py-8 px-4 w-full"
     >
       <Card className="border-none overflow-hidden relative group">
         <CreateProductFormHeader />
@@ -123,6 +123,7 @@ export function CreateProductForm() {
                   label="Price ($)"
                   type="number"
                   placeholder="0.00"
+                  min={1}
                   registration={register("price", { valueAsNumber: true })}
                   error={errors.price}
                 />

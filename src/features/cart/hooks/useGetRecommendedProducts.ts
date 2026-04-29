@@ -5,5 +5,6 @@ export const useGetRecommendedProducts = () => {
   return useQuery({
     queryKey: ["recommendations"],
     queryFn: getRecommendedProducts,
+    refetchOnWindowFocus: false,
   });
 };

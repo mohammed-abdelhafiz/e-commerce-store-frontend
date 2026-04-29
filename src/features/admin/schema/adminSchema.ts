@@ -11,9 +11,9 @@ export const createProductSchema = z.object({
     .max(1000, "Description must be at most 1000 characters long"),
   price: z
     .number()
-    .min(0, "Price must be at least 0")
+    .min(1, "Price must be at least 1")
     .or(z.string())
-    .refine((val) => Number(val) >= 0, "Price must be at least 0"),
+    .refine((val) => Number(val) >= 1, "Price must be at least 1"),
   category: z.enum([
     "Jeans",
     "T-shirts",

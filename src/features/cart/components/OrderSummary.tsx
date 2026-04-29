@@ -12,6 +12,9 @@ import {
 } from "@/shared/components/ui/card";
 import { Button } from "@/shared/components/ui/button";
 import { ICartItem, ICoupon } from "../types";
+import { createStripeCheckoutSession } from "@/features/payment/services/paymentApi";
+
+import toast from "react-hot-toast";
 
 interface OrderSummaryProps {
   cartItems: ICartItem[];
@@ -20,6 +23,16 @@ interface OrderSummaryProps {
 
 export const OrderSummary = ({ cartItems, coupon }: OrderSummaryProps) => {
   const { subtotal, total, savings } = getOrderSummary(cartItems, coupon);
+
+  const handlePayment = async () => {
+    const session = await createStripeCheckoutSession(cartItems, coupon?.code);
+    if (!session) {
+      toast.error("Failed to create payment session, please try again later");
+      return;
+    }
+    window.location.href = session.url;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -59,7 +72,11 @@ export const OrderSummary = ({ cartItems, coupon }: OrderSummaryProps) => {
         </CardContent>
 
         <CardFooter className="flex flex-col gap-4">
-          <Button className="w-full font-bold" size="lg">
+          <Button
+            className="w-full font-bold"
+            size="lg"
+            onClick={handlePayment}
+          >
             Proceed to Checkout
           </Button>
 

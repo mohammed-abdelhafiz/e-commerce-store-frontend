@@ -45,7 +45,6 @@ export const VoucherSection = ({
           discountPercentage: coupon.discountPercentage,
         });
 
-        toast.success("Coupon applied successfully");
       },
       onError: () => {
         toast.error("Something went wrong");
@@ -121,7 +120,7 @@ export const VoucherSection = ({
           )}
 
           {/* Available Coupon */}
-          {myCoupon && (
+          {myCoupon && !appliedCoupon && (
             <div className="mt-4 flex items-center justify-between">
               <h3 className="text-sm font-medium">Your Available Coupon:</h3>
               <p className="text-sm">
