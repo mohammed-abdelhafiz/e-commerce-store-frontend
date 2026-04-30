@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { CATEGORIES } from "@/shared/lib/constants";
 import { CategoryItem } from "./CategoryItem";
+import { FeaturedProducts } from "./FeaturedProducts";
+
 export const HomePageContent = () => {
   return (
     <div className="flex flex-col gap-4 py-16">
@@ -30,6 +32,13 @@ export const HomePageContent = () => {
         {CATEGORIES.map((category) => (
           <CategoryItem category={category} key={category.name} />
         ))}
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <FeaturedProducts />
       </motion.div>
     </div>
   );

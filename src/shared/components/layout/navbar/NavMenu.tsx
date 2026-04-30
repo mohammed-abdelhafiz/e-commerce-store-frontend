@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { Home, ShoppingCart, Lock, History } from "lucide-react";
+import { Home, ShoppingCart, Lock, ShoppingBag } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { buttonVariants } from "@/shared/components/ui/button";
 import { Badge } from "@/shared/components/ui/badge";
@@ -26,8 +26,8 @@ export const NavMenu = ({
   return (
     <nav
       className={cn(
-        "flex items-center gap-6",
-        orientation === "vertical" ? "flex-col" : "flex-row",
+        "flex items-center",
+        orientation === "vertical" ? "flex-col gap-3" : "flex-row gap-6",
         className,
       )}
       {...props}
@@ -67,7 +67,7 @@ export const NavMenu = ({
               pathname === "/orders" ? "text-primary" : "",
             )}
           >
-            <History className="h-4 w-4" />
+            <ShoppingBag className="h-4 w-4" />
             <span>Orders</span>
           </Link>
         </>

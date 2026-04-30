@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ E-Commerce Frontend
 
-## Getting Started
+A premium, high-performance storefront built with **Next.js 15**, **React 19**, and **Tailwind CSS 4**. Designed for speed, responsiveness, and a seamless user experience.
 
-First, run the development server:
+## 💎 Design Philosophy
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Modern Aesthetics**: Sleek dark mode, glassmorphism, and smooth transitions using **Framer Motion**.
+- **Interactive UI**: Micro-animations, hover effects, and confetti celebrations on successful purchases.
+- **Component-Driven**: Built with **shadcn/ui** and **Radix UI** for accessible, high-quality components.
+- **Responsive**: Fully optimized for mobile, tablet, and desktop views.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Data Fetching**: [TanStack Query v5](https://tanstack.com/query/latest)
+- **Animations**: [Motion](https://motion.dev/) (Framer Motion)
+- **Forms**: [React Hook Form](https://react-hook-form.com/) with [Zod](https://zod.dev/)
+- **Charts**: [Recharts](https://recharts.org/) (Admin Analytics)
+
+## ✨ Key Features
+
+- **🏠 Dynamic Homepage**: Animated category cards and featured product carousels.
+- **🏷️ Categories**: Dedicated browsing for `Jeans`, `T-shirts`, `Shoes`, `Glasses`, `Jackets`, `Suits`, and `Bags`.
+- **🛍️ Product Catalog**: Responsive grids with skeleton loading states and advanced filtering.
+- **🛒 Shopping Cart**: Real-time synchronization with the backend and persistent state.
+- **💳 Secure Checkout**: Seamless Stripe integration with custom success and cancellation flows.
+- **🛡️ Admin Dashboard**:
+    - **Analytics**: Visualized revenue and sales charts using Recharts.
+    - **Inventory**: Full product management with image upload previews.
+    - **Orders**: Real-time tracking and management of customer transactions.
+- **👤 User Profile**: Easy access to order history and personalized rewards.
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/              # Next.js App Router (Pages & Layouts)
+├── features/         # Domain-specific components & logic
+│   ├── admin/        # Dashboard, Analytics, Inventory
+│   ├── auth/         # Login & Signup forms
+│   ├── cart/         # Cart drawer & logic
+│   ├── orders/       # Order tracking & history
+│   ├── payment/      # Stripe Checkout components
+│   └── products/     # Cards, Details, & Grid
+├── shared/           # Reusable UI components, hooks, & utils
+└── proxy.ts          # API request configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js (v18+)
+- Backend API running (see `/backend` instructions)
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Set up Environment Variables**: Create a `.env` file in the root:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_pub_key
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Running the App
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Development**:
+  ```bash
+  npm run dev
+  ```
+- **Build**:
+  ```bash
+  npm run build
+  ```
+- **Start Production**:
+  ```bash
+  npm start
+  ```
 
-## Deploy on Vercel
+## 📜 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Distributed under the MIT License.

@@ -50,6 +50,7 @@ export function OrdersTable({
           <TableRow className="bg-muted/50">
             <TableHead className="font-semibold">Order ID</TableHead>
             <TableHead className="font-semibold">Customer</TableHead>
+            <TableHead className="font-semibold">Shipping</TableHead>
             <TableHead className="font-semibold">Date</TableHead>
             <TableHead className="font-semibold">Total</TableHead>
             <TableHead className="font-semibold">Status</TableHead>
@@ -67,8 +68,16 @@ export function OrdersTable({
                   <span className="text-xs text-muted-foreground">{order.user.email}</span>
                 </div>
               </TableCell>
+              <TableCell>
+                <div className="flex flex-col text-xs text-muted-foreground max-w-[200px] truncate">
+                  <span className="font-medium text-foreground truncate">{order.shippingAddress.address}</span>
+                  <span>
+                    {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zip}
+                  </span>
+                </div>
+              </TableCell>
               <TableCell className="text-muted-foreground">
-                {new Date(order.createdAt).toLocaleDateString("en-US",{
+                {new Date(order.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
@@ -85,11 +94,11 @@ export function OrdersTable({
             </TableRow>
           ))}
           {orders.length === 0 && (
-             <TableRow>
-             <TableCell colSpan={5} className="h-24 text-center">
-               No orders found.
-             </TableCell>
-           </TableRow>
+            <TableRow>
+              <TableCell colSpan={6} className="h-24 text-center">
+                No orders found.
+              </TableCell>
+            </TableRow>
           )}
         </TableBody>
         <TableFooter className="bg-muted/50 border-t">
@@ -97,7 +106,7 @@ export function OrdersTable({
             <TableCell className="font-medium italic text-muted-foreground">
               Page {page}
             </TableCell>
-            <TableCell colSpan={4} className="text-right">
+            <TableCell colSpan={5} className="text-right">
               <div className="flex items-center justify-end gap-2">
                 <Button
                   variant="outline"

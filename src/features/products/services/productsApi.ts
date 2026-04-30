@@ -16,3 +16,8 @@ export const getRecommendedProducts = async () => {
   const response = await api.get("/products/recommendations");
   return response.data.products;
 };
+
+export const getFeaturedProducts = async () => {
+  const response = await api.get("/products/featured");
+  return response.data.products;
+};

@@ -63,3 +63,10 @@ export const getOrders = async ({
   const response = await api.get(`/orders?page=${page}&limit=${limit}`);
   return response.data;
 };
+
+export const getAnalytics = async () => {
+  const response = await api.get("/analytics");
+  console.log(response.data);
+
+  return response.data;
+};

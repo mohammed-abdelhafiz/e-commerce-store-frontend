@@ -1,5 +1,3 @@
-"use client";
-
 import { OrdersTable } from "./OrdersTable";
 import useGetOrders from "../../hooks/useGetOrders";
 import { motion } from "motion/react";
