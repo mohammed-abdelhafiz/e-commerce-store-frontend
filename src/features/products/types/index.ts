@@ -25,3 +25,14 @@ export type Product = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type PaginatedResponse<T> = {
+  products: T[];
+  pagination: {
+    total: number;
+    totalPages: number;
+    currentPage: number;
+    limit: number;
+  };
+};
+

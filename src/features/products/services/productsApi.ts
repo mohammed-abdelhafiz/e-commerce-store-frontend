@@ -1,11 +1,18 @@
 import api from "@/shared/lib/axios";
 
-export const getProductsByCategory = async (category: string) => {
+import { PaginatedResponse, Product } from "../types";
+
+export const getProductsByCategory = async (
+  category: string,
+  page = 1,
+  limit = 8
+): Promise<PaginatedResponse<Product>> => {
   const response = await api.get(
-    `/products/category/${encodeURIComponent(category)}`,
+    `/products/category/${encodeURIComponent(category)}?page=${page}&limit=${limit}`
   );
-  return response.data.products;
+  return response.data;
 };
+
 
 export const addProductToCart = async (productId: string) => {
   const response = await api.post(`/cart`, { productId });
