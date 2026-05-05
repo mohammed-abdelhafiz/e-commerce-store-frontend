@@ -85,7 +85,6 @@ npm install
 Create a `.env` file in the root directory:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 ```
 
 ### 4. Launch
