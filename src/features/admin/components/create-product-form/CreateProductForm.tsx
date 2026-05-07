@@ -23,6 +23,9 @@ import { ImageFormField } from "@/shared/components/ImageFormField";
 import { useState } from "react";
 import { Category } from "@/features/products/types";
 import { CATEGORIES } from "@/shared/lib/constants";
+import { Switch } from "@/shared/components/ui/switch";
+import { Label } from "@/shared/components/ui/label";
+import { Star } from "lucide-react";
 
 export function CreateProductForm() {
   const {
@@ -32,15 +35,18 @@ export function CreateProductForm() {
     setValue,
     setError,
     clearErrors,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<CreateProductDto>({
     resolver: zodResolver(createProductSchema),
+    mode: "onChange",
     defaultValues: {
       name: "",
       description: "",
       price: "1",
       category: "Jeans",
       image: undefined,
+      isFeatured: false,
     },
   });
 
@@ -70,12 +76,13 @@ export function CreateProductForm() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="flex flex-col gap-6 max-w-2xl mx-auto py-8 px-4 w-full"
     >
-      <Card className="border-none overflow-hidden relative group">
+      <Card className="border-none overflow-hidden relative group backdrop-blur-xl bg-background/60 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/10">
+        <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
         <CreateProductFormHeader />
 
         <CardContent className="p-6 relative">
@@ -166,6 +173,26 @@ export function CreateProductForm() {
                         : undefined
                     }
                   />
+
+                  {/* Section: Visibility */}
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-primary/5 border border-primary/10 transition-all hover:bg-primary/10">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <Star size={16} className="text-primary fill-primary/20" />
+                        <Label htmlFor="isFeatured" className="text-sm font-bold tracking-tight cursor-pointer">
+                          Featured Product
+                        </Label>
+                      </div>
+                      <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
+                        Highlight this product on the homepage
+                      </p>
+                    </div>
+                    <Switch
+                      id="isFeatured"
+                      checked={watch("isFeatured")}
+                      onCheckedChange={(checked) => setValue("isFeatured", checked)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

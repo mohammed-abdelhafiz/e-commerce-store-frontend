@@ -43,6 +43,7 @@ export const FormField = ({
           placeholder={placeholder}
           {...registration}
           className={!resize ? "resize-none" : ""}
+          aria-invalid={!!error}
         />
       ) : (
         <Input
@@ -51,6 +52,7 @@ export const FormField = ({
           placeholder={placeholder}
           {...registration}
           min={min}
+          aria-invalid={!!error}
         />
       )}
     </Field>
